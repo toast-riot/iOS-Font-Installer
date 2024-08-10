@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Installer</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main id="main-content">
+        <section>
+            <div class="title-container">
+                <h3>iOS / iPadOS Font Installer</h3>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"></path></svg>
+                </a>
+            </div>
+            <div class="noscript warning"><strong>Warning:</strong> This tool requires JavaScript in order to function properly. Either the main script failed to load, or you have JavaScript disabled.</div>
+            <form class="config-form">
+                <table class="config-table">
+                    <tr>
+                        <td>Font Files</td>
+                        <td>
+                            <div class="file-upload-container">
+                                <label class="button" tabindex="0">Select files
+                                    <input type="file" id="file-upload" multiple accept=".ttf,.otf" />
+                                </label>
+                                <div id="file-name"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name (optional)</td>
+                        <td>
+                            <input type="text" id="payloadDisplayName" name="payloadDisplayName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description (optional)</td>
+                        <td>
+                            <input type="text" id="payloadDescription" name="payloadDescription">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Identifier (optional)</td>
+                        <td>
+                            <input type="text" id="payloadIdentifier" name="payloadIdentifier"
+                                placeholder="com.example.font" data-defaultval="com.example.font">
+                        </td>
+                    </tr>
+                </table>
+                <div class="config-options">
+                    <button type="submit" class="button" id="submit-button">Generate profile</button>
+                    <button type="button" class="button" id="reset-button">Reset</button>
+                </div>
+            </form>
+        </section>
+        <section>
+            <h3>Instructions</h3>
+            <p><strong>Note:</strong> This site works best on iOS / iPadOS Safari.</p>
+            <ol>
+                <li>
+                    <strong>Download the Font</strong>
+                    <ul>
+                        <li>Download the font you want to install. Recommended sources include <a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a> or <a href="https://www.dafont.com" target="_blank" rel="noopener noreferrer">Dafont</a>.</li>
+                        <li>Ensure the font files are in <code>.ttf </code> or <code>.otf </code> format. If not, you can convert them using an online tool such as <a href="https://convertio.co" target="_blank" rel="noopener noreferrer">Convertio</a>, <a href="https://cloudconvert.com" target="_blank" rel="noopener noreferrer">CloudConvert</a> or <a href="https://www.fontconverter.io" target="_blank" rel="noopener noreferrer">FontConverter</a>.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Select the Files</strong>
+                    <ul>
+                        <li>Click the "Select files" button and select the font files.</li>
+                        <li>If the font includes variations (e.g. Regular, Bold, Italic), select all of them.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Configure Profile (Optional)</strong>
+                    <ul>
+                        <li>Optionally, define a name, description, and identifier for the font.</li>
+                        <li>The name and description are for your reference, but the identifier will be used to determine whether to replace existing profiles.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Generate and Install the Profile</strong>
+                    <ul>
+                        <li>Click the <strong>Generate profile</strong> button.</li>
+                        <li>
+                            <strong>If using a desktop browser:</strong>
+                            A configuration profile will downloaded. Transfer the profile to the mobile device, then tap on it in the <a href="https://apps.apple.com/us/app/files/id1232058109" target="_blank" rel="noopener noreferrer">Files</a> app.
+                        </li>
+                        <li>
+                            <strong>If using Safari:</strong>
+                            You will be prompted to install the profile. Tap "Allow".
+                        </li>
+                        <li>On the mobile device, open the Settings app. Tap "Profile Downloaded", then follow the installation instructions.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <hr>
+        <section>
+            <h3>Disclaimer</h3>
+            <p>
+                This tool does <i>not</i> change the system font of the device. Changing the system font is not possible on iOS without exploits.
+            </p>
+            <p>
+                The fonts installed using this tool can only be used within apps that support custom fonts, such as many design apps (Procreate, Keynote, Pages) and text editors (Runestone, Textastic).
+            </p>
+        </section>
+        <hr>
+        <section>
+            <h3>About</h3>
+            <p>This is a free, simple, and open-source tool to install fonts on iOS devices.</p>
+            <p>Source code is available on <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+        </section>
+    </main>
+    <script src="js/bundle.js"></script>
+</body>
+
+</html>

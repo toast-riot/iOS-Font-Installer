@@ -1,0 +1,238 @@
+/*=== VARIABLES ===*/
+:root {
+    --font-family: 'Inter', sans-serif;
+    --line-height: 1.3;
+    --max-width: 800px;
+    --min-width: 330px;
+    --page-padding: 22px;
+    --border-radius: 5px;
+    --control-padding: 10px;
+    --icon-size: 24px;
+}
+
+/* color scheme */
+:root {
+    --text: #000;
+    --background: #fff;
+    --text-secondary: #555;
+    --icon: #000;
+    --button-bg: #ccc;
+    --button-bg-hover: #bbb;
+    --button-bg-active: #cacaca;
+    --button-focus-border: #666;
+    --input-bg: #eaeaea;
+    --input-focus-border: #888;
+    --input-placeholder: #666;
+    --form-outline: #ccc;
+
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #e8e8e8;
+        --background: #101012;
+        --text-secondary: #777;
+        --icon: #fcfcfc;
+        --button-bg: #555;
+        --button-bg-hover: #666;
+        --button-bg-active: #4a4a4a;
+        --button-focus-border: #bbb;
+        --input-bg: #333;
+        --input-focus-border: #888;
+        --input-placeholder: #999;
+        --form-outline: #444;
+    }
+}
+
+
+/*=== GENERAL ===*/
+body {
+    font-family: var(--font-family);
+    background-color: var(--background);
+    color: var(--text);
+    line-height: var(--line-height);
+    margin: 0;
+}
+
+/* main content */
+#main-content {
+    max-width: var(--max-width);
+    min-width: var(--min-width);
+    margin: 0 auto;
+    padding: var(--page-padding);
+}
+
+/* titles */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title-container > *:not(:last-child) {
+    margin: 0 20px 0 0;
+}
+.title-container > *:last-child {
+    flex-shrink: 0;
+}
+.title-container a {
+    display: inline-flex;
+}
+
+/* icons */
+.icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    fill: var(--icon);
+}
+
+/* custom buttons */
+button, input[type="file"] {
+    display: none;
+}
+.button {
+    border: none;
+    color: var(--text);
+    display: inline-block;
+    white-space: nowrap;
+    padding: var(--control-padding);
+    background: var(--button-bg);
+    border-radius: var(--border-radius);
+    font-weight: normal;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.button:focus-visible {
+    outline: 1px solid var(--button-focus-border);
+}
+@media (hover: hover) {
+    .button:hover {
+        background: var(--button-bg-hover);
+    }
+}
+.button:active {
+    background: var(--button-bg-active);
+}
+
+/* config form */
+.config-form {
+    border: 1px solid var(--form-outline);
+    margin-top: 18px;
+    padding: 0 6px 6px 6px;
+    border-radius: calc(var(--border-radius) * 2);
+    overflow-x: auto;
+}
+
+/* config table */
+.config-table {
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.config-table input[type="text"]  {
+    width: 100%;
+    font-size: 0.85em;
+    background: var(--input-bg);
+    color: var(--text);
+    border: none;
+    padding: var(--control-padding);
+    border-radius: var(--border-radius);
+}
+.config-table input[type="text"]::placeholder {
+    color: var(--input-placeholder);
+}
+.config-table input[type="text"]:focus-visible {
+    outline: 1px solid var(--input-focus-border);
+}
+.config-table tr td {
+    padding: 5px 0 3px 0;
+}
+.config-table tr td:first-child {
+    padding-right: 10px;
+    white-space: nowrap;
+    width: 0;
+}
+@media screen and (max-width: 500px) {
+    .config-table tr td {
+        display: block;
+        width: 100%;
+    }
+    .config-table tr td:last-child {
+        padding-top: 0px;
+    }
+}
+
+/* config options */
+.config-options {
+    user-select: none;
+    -webkit-user-select: none;
+}
+.config-options .button {
+    margin-top: 5px;
+    margin-right: 4px;
+}
+
+/* file upload */
+.file-upload-container {
+    display: flex;
+    align-items: center;
+}
+#file-name {
+    color: var(--text-secondary);
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+/* warnings */
+.warning {
+    margin: 20px 0 0 0;
+    padding: 10px 16px;
+    background: #ff2a511a;
+    border-radius: var(--border-radius);
+    /* first variation */
+    border: 1px solid #ff2a518a;
+    /* second variation */
+    /* border-left: 2px solid #ff2a51; */
+}
+
+/* lists */
+ul {
+    padding-inline-start: 26px;
+    list-style-type: "- ";
+}
+ul > li {
+    margin-top: 3px;
+    margin-bottom: 9px;
+}
+ol > li {
+    margin-top: 24px;
+}
+/* make lists have less padding on small screens, for more horizontal space */
+@media screen and (max-width: 500px) {
+    ol, ul {
+        padding-inline-start: 20px;
+    }
+}
+
+
+/*=== TRIVIAL ===*/
+hr {
+    border: none;
+    border-top: 1px solid var(--form-outline);
+    margin: 14px 0;
+}
+
+p {
+    margin: 6px 0 16px 0;
+}
+
+
+/*=== MISC ===*/
+/* fade in noscript elements, to prevent flickering */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.noscript {
+    opacity: 0;
+    animation: fadeIn 0.15s 0.3s forwards;
+}

@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build": "browserify assets/js/main.js | terser > docs/js/bundle.js",
+    "build:dev": "browserify assets/js/main.js -o docs/js/bundle.js"
+  },
+  "devDependencies": {
+    "terser": "^5.31.2"
+  },
+  "dependencies": {
+    "simple-plist": "^1.3.1"
+  }
+}
