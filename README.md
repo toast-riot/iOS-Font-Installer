@@ -1,5 +1,8 @@
 # iOS Font Installer
-A minimalist webpage for installing fonts on iOS devices. Runs entirely client-side.
+
+A minimalist webpage for installing fonts on iOS / iPadOS devices. Runs entirely client-side.
+
+**Note: This also works on iPadOS.**
 
 ### [You can check it out here!](https://toast-riot.github.io/iOS-Font-Installer/)
 
