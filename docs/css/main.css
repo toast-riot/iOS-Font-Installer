@@ -128,7 +128,7 @@ button, input[type="file"] {
     user-select: none;
     -webkit-user-select: none;
 }
-.config-table input[type="text"]  {
+.config-table input[type="text"],input[type="number"]  {
     width: 100%;
     font-size: 0.85em;
     background: var(--input-bg);
@@ -142,6 +142,11 @@ button, input[type="file"] {
 }
 .config-table input[type="text"]:focus-visible {
     outline: 1px solid var(--input-focus-border);
+}
+.config-table input[type="checkbox"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .config-table tr td {
     padding: 5px 0 3px 0;

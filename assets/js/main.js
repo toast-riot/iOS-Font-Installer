@@ -7,79 +7,58 @@ document.addEventListener('DOMContentLoaded', function () {
     const plist = require('simple-plist');
 
     // Shortcut for querySelector
-    const qs = selector => document.querySelector(selector);
+    const qs = selector => document.querySelector(selector)
 
-    const fileInput = qs('#file-upload');
-    const fileName = qs('#file-name');
     const resetButton = qs('#reset-button');
     const configForm = qs('.config-form');
     const identifierField = qs('#payloadIdentifier');
 
     function userConfig(item) {
         let field = configForm.querySelector(`#${item}`);
+        if (field.type === 'checkbox') {
+            return field.checked;
+        }
+        if (field.type === 'number') {
+            return Number(field.value);
+        }
         return field.value || field.dataset.defaultval;
     }
 
     function refreshIdentifier() {
-        identifierField.dataset.defaultval = 'com.example.font-' + randomString();
-    }
-
-    function updateFileCount() {
-        const files = fileInput.files;
-        let text = files.length ? `${files.length} file${files.length === 1 ? '' : 's'} selected` : 'No files selected';
-        fileName.textContent = text;
+        identifierField.dataset.defaultval = 'com.example.printer-' + randomString();
     }
 
     function generateConfig() {
-        const files = fileInput.files;
-
-        // Checks
-        if (files.length === 0) {
-            alert('No files selected.\nUpload some files first.');
-            return;
-        }
-
-        // Build a payload for each font file
-        let promises = Array.from(files).map(file => new Promise((resolve, reject) => {
-            let reader = new FileReader();
-            reader.onload = function(event) {
-                let buffer = Buffer.from(event.target.result);
-                resolve({ result: buffer, name: file.name });
-            };
-            reader.onerror = function(error) {
-                console.error(error);
-                reject(error);
-                alert('There was an error reading the files.\nMaybe they are too big, or no longer exist?');
-            };
-            reader.readAsArrayBuffer(file);
-        }));
 
         // Build the profile
-        Promise.all(promises).then(payloads => {
-            let config = {
-                PayloadContent: payloads.map(payload => ({
-                    Font: payload.result,
-                    PayloadIdentifier: userConfig('payloadIdentifier') + '.' + payload.name,
-                    PayloadType: 'com.apple.font',
-                    PayloadUUID: generateUUID(),
-                    PayloadVersion: 1
-                })),
+        let config = {
+            PayloadContent: [{
+                AirPrint: [{
+                    ForceTLS: userConfig('useTLS'),
+                    IPAddress: userConfig('IPAddress'),
+                    Port: userConfig('port'),
+                    ResourcePath: userConfig('resourcePath')
+                }],
                 PayloadIdentifier: userConfig('payloadIdentifier'),
-                PayloadType: 'Configuration',
+                PayloadType: 'com.apple.airprint',
                 PayloadUUID: generateUUID(),
                 PayloadVersion: 1
-            };
-            if (userConfig('payloadDescription')) {
-                config.PayloadDescription = userConfig('payloadDescription');
-            }
-            if (userConfig('payloadDisplayName')) {
-                config.PayloadDisplayName = userConfig('payloadDisplayName');
-            }
+            }],
+            PayloadIdentifier: userConfig('payloadIdentifier'),
+            PayloadType: 'Configuration',
+            PayloadUUID: generateUUID(),
+            PayloadVersion: 1
+        };
+        if (userConfig('payloadDescription')) {
+            config.PayloadDescription = userConfig('payloadDescription');
+        }
+        if (userConfig('payloadDisplayName')) {
+            config.PayloadDisplayName = userConfig('payloadDisplayName');
+        }
+        
+        let prof = plist.stringify(config);
 
-            let prof = plist.stringify(config);
-
-            downloadFile(prof, 'font.mobileconfig', "application/x-apple-aspen-config");
-        });
+        downloadFile(prof, 'printer.mobileconfig', "application/x-apple-aspen-config");
 
         // Refresh the identifier if it was used
         refreshIdentifier();
@@ -111,10 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    updateFileCount();
     refreshIdentifier();
-
-    fileInput.addEventListener('change', updateFileCount);
 
     resetButton.addEventListener('click', () => {
         configForm.reset();

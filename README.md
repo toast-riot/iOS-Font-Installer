@@ -1,16 +1,17 @@
-<h1 align="center">iOS Font Installer</h1>
-A minimalist webpage for installing fonts on iOS / iPadOS devices. Runs entirely client-side.
+<h1 align="center">iOS Printer Installer</h1>
+A minimalist webpage for installing IPP printers on iOS / iPadOS devices. Runs entirely client-side.
 
-### [You can check it out here!](https://toast-riot.github.io/iOS-Font-Installer/)
+### [You can check it out here!](https://emilcarr.scot/iOS-Printer-Installer/)
 
 ## Instructions
-1. **Download the Font**
-    - Download the font you want to install. Recommended sources include [Google Fonts](https://fonts.google.com) or [Dafont](https://www.dafont.com).
-    - Ensure the font files are in `.ttf` or `.otf` format. If not, you can convert them using an online tool such as [Convertio](https://convertio.co), [CloudConvert](https://cloudconvert.com), or [FontConverter](https://www.fontconverter.io).
+1. **Get the printer address**
+    - University of Glasgow Students can find their unique IPP address at [mobileprint.gla.ac.uk/](https://mobileprint.gla.ac.uk/driverprint.cfm?platform=macosx&printmode=3). Click on 'Driver Print'->Select Mac OSX->Find your unique printer address and resource location on this page.
 
-2. **Select the Files**
-    - Click the "Select files" button and select the font files.
-    - If the font includes variations (e.g. Regular, Bold, Italic), select all of them.
+2. **Paste it in**
+    - Type all the info into the appropriate fields.
+    - Remove ipp:// or ipps:// from the printer address, if this is relevant. iOS infers this from the 'Use TLS' value.
+    - The 'Resource Location' will be everything after the first '/'.
+    - University of Glasgow Students: Leave 'Use TLS' unchecked, port 631.
 
 3. **Configure Profile (Optional)**
     - Optionally, define a name, description, and identifier for the font.
@@ -21,10 +22,3 @@ A minimalist webpage for installing fonts on iOS / iPadOS devices. Runs entirely
     - **If using a desktop browser:** A configuration profile will be downloaded. Transfer the profile to the mobile device, then tap on it in the [Files](https://apps.apple.com/us/app/files/id1232058109) app.
     - **If using Safari:** You will be prompted to install the profile. Tap "Allow".
     - On the mobile device, open the Settings app. Tap "Profile Downloaded", then follow the installation instructions.
-
-## Disclaimer
-
-> [!WARNING]
-> This tool does **not** change the system font of the device. Changing the system font is **not possible** on iOS without exploits.
->
-> The fonts installed using this tool can only be used within apps that support custom fonts, such as many design apps (Procreate, Keynote, Pages) and text editors (Runestone, Textastic).
